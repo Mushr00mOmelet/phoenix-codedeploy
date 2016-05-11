@@ -1,0 +1,1 @@
+*/5 * * * * root /opt/codedeploy-agent/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail --swap-util --swap-used --disk-space-util --disk-space-used --disk-space-avail --disk-path=/ --from-cron
