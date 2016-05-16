@@ -29,16 +29,6 @@ esac
 
 SOURCE_DIR=/opt/phoenix-codedeploy/deploy
 
-# Logging
-awk -v env="$ENVIRONMENT" '{ gsub(/ENV_VALUE/, env); print }' \
-    "$SOURCE_DIR"/awslogs.conf >/tmp/awslogs.conf
-curl https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py -O
-python ./awslogs-agent-setup.py \
-    --non-interactive \
-    --region `ec2metadata --availability-zone | rev | cut -c 2- | rev` \
-    --configfile /tmp/awslogs.conf
-service awslogs restart
-
 # Move into the app directory
 cd /opt/phoenix-codedeploy
 
