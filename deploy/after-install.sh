@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -e
 
 # Find out from CodeDeploy what environment we are in by parsing the APPLICATION_NAME
