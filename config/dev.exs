@@ -26,6 +26,15 @@ config :phoenix_codedeploy, PhoenixCodedeploy.Endpoint,
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
+# Override recipients so we don't spam actual accounts
+# with test emails
+config :sog_api, :email,
+  contact_to: "fake@example.com"
+
+# Use test gateway
+config :phoenix_codedeploy, :stripe,
+ token: "sk_test_QwrSPonmUQuMLs7KvLTgfhY"
+
 # Configure your database
 config :phoenix_codedeploy, PhoenixCodedeploy.Repo,
   adapter: Ecto.Adapters.Postgres,

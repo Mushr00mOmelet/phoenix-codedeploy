@@ -17,7 +17,7 @@ case $ENVIRONMENT in
         export MIX_ENV=red
     ;;
     production)
-        S3=production-s3-buckets-appconfigbucket-wyvb0uh5uocb
+        S3=monica-production
         export MIX_ENV=prod
     ;;
     *)
@@ -32,7 +32,7 @@ SOURCE_DIR=/opt/phoenix-codedeploy/deploy
 cd /opt/phoenix-codedeploy
 
 # Pull in secrets from S3 Bucket
-aws --region=us-east-1 s3 cp s3://$S3/monica-app-$ENVIRONMENT.secret.exs /opt/phoenix-codedeploy/config/$MIX_ENV.secret.exs
+aws --region=us-east-1 s3 cp s3://$S3/$ENVIRONMENT.secret.exs /opt/phoenix-codedeploy/config/$MIX_ENV.secret.exs
 
 # Copy over the upstart script and set MIX_ENV correctly
 sed "s/MIX_ENV_VALUE/$MIX_ENV/"  /opt/phoenix-codedeploy/deploy/monica-app-upstart.conf >/etc/init/monica-app.conf
